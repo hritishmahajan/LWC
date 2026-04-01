@@ -1,0 +1,33 @@
+<template>
+    <lightning-card title="Contact Search">
+
+        <div class="slds-p-around_medium">
+
+            <lightning-input label="First Name" value={firstName} oninput={handleFirstName}></lightning-input>
+
+            <lightning-input label="Last Name" value={lastName} oninput={handleLastName}></lightning-input>
+
+            <lightning-input label="Email" value={email} oninput={handleEmail}></lightning-input>
+
+        </div>
+
+        <template if:true={showTable}>
+
+            <template if:true={filteredContacts.length}>
+                <lightning-datatable
+                    key-field="id"
+                    data={filteredContacts}
+                    columns={columns}>
+                </lightning-datatable>
+            </template>
+
+            <template if:false={filteredContacts.length}>
+                <div class="slds-p-around_medium">
+                    <p>No Results Found</p>
+                </div>
+            </template>
+
+        </template>
+
+    </lightning-card>
+</template>
