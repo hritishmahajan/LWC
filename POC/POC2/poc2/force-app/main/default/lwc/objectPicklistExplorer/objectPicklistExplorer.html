@@ -1,0 +1,52 @@
+<template>
+    <lightning-card title="Object Picklist Explorer" icon-name="utility:search">
+        <div class="slds-p-around_medium">
+
+            <!-- Object Picklist -->
+            <lightning-combobox
+                label="Select an Object"
+                placeholder="-- Choose an Object --"
+                options={objectOptions}
+                value={selectedObject}
+                onchange={handleObjectChange}
+            ></lightning-combobox>
+
+            <!-- Picklist Fields Dropdown (shown only after object is selected) -->
+            <template if:true={selectedObject}>
+                <div class="slds-m-top_medium">
+                    <template if:true={isLoading}>
+                        <lightning-spinner alternative-text="Loading fields..." size="small"></lightning-spinner>
+                    </template>
+
+                    <template if:false={isLoading}>
+                        <template if:true={hasPicklistFields}>
+                            <lightning-combobox
+                                label="Picklist Fields (API Names)"
+                                placeholder="-- Choose a Picklist Field --"
+                                options={picklistFieldOptions}
+                                value={selectedField}
+                                onchange={handleFieldChange}
+                            ></lightning-combobox>
+                        </template>
+
+                        <template if:false={hasPicklistFields}>
+                            <p class="slds-text-color_weak slds-m-top_small">
+                                No picklist fields found for <strong>{selectedObject}</strong>.
+                            </p>
+                        </template>
+                    </template>
+                </div>
+            </template>
+
+            <!-- Selected Field Display -->
+            <template if:true={selectedField}>
+                <div class="slds-m-top_medium slds-box slds-theme_shade">
+                    <p>
+                        <strong>Selected Field API Name:</strong> {selectedField}
+                    </p>
+                </div>
+            </template>
+
+        </div>
+    </lightning-card>
+</template>
