@@ -1,0 +1,232 @@
+.pagination-wrapper {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
+    overflow: hidden;
+    border: 1px solid #e5e7eb;
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 24px;
+    background: linear-gradient(135deg, #0176d3 0%, #014486 100%);
+    color: #ffffff;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.header-icon {
+    font-size: 28px;
+    line-height: 1;
+    opacity: 0.9;
+}
+
+.header-title {
+    margin: 0 0 2px 0;
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+.header-subtitle {
+    margin: 0;
+    font-size: 0.78rem;
+    opacity: 0.82;
+}
+
+.badge {
+    background: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 60px 24px;
+    gap: 14px;
+    color: #6b7280;
+}
+
+.state-icon {
+    font-size: 2.4rem;
+}
+
+.state-text {
+    margin: 0;
+    font-size: 0.92rem;
+}
+
+.error-state {
+    color: #dc2626;
+}
+
+.spinner {
+    width: 36px;
+    height: 36px;
+    border: 3px solid #e5e7eb;
+    border-top-color: #0176d3;
+    border-radius: 50%;
+    animation: spin 0.75s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.table-container {
+    overflow-x: auto;
+}
+
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.875rem;
+}
+
+.data-table thead tr {
+    background: #f3f4f6;
+    border-bottom: 2px solid #e5e7eb;
+}
+
+.data-table th {
+    padding: 12px 16px;
+    text-align: left;
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    color: #6b7280;
+    white-space: nowrap;
+}
+
+.data-table td {
+    padding: 12px 16px;
+    color: #374151;
+    border-bottom: 1px solid #f3f4f6;
+    vertical-align: middle;
+}
+
+.table-row:hover td {
+    background: #f9fafb;
+}
+
+.table-row:last-child td {
+    border-bottom: none;
+}
+
+.row-num {
+    color: #9ca3af;
+    font-size: 0.78rem;
+    font-weight: 600;
+    width: 36px;
+}
+
+.account-name {
+    font-weight: 600;
+    color: #0176d3;
+}
+
+.industry-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    background: #eff6ff;
+    color: #1d4ed8;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: 600;
+}
+
+.empty-val {
+    color: #d1d5db;
+}
+
+.pagination-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+    border-top: 1px solid #e5e7eb;
+    background: #fafafa;
+}
+
+.nav-buttons {
+    display: flex;
+    gap: 6px;
+}
+
+.nav-btn {
+    padding: 7px 14px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #374151;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s;
+    white-space: nowrap;
+}
+
+.nav-btn:hover:not(:disabled) {
+    background: #0176d3;
+    border-color: #0176d3;
+    color: #ffffff;
+}
+
+.nav-btn:disabled {
+    opacity: 0.38;
+    cursor: not-allowed;
+}
+
+.page-numbers {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.page-btn {
+    width: 36px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.82rem;
+    font-weight: 600;
+    color: #374151;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.15s, border-color 0.15s, color 0.15s, transform 0.1s;
+}
+
+.page-btn:hover:not(:disabled):not(.page-btn--active) {
+    background: #eff6ff;
+    border-color: #0176d3;
+    color: #0176d3;
+    transform: translateY(-1px);
+}
+
+.page-btn--active {
+    background: #0176d3;
+    border-color: #0176d3;
+    color: #ffffff;
+    cursor: default;
+    box-shadow: 0 2px 6px rgba(1, 118, 211, 0.4);
+}

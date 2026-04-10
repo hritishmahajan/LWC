@@ -1,0 +1,161 @@
+<template>
+    <div class="pagination-wrapper">
+
+        <!-- Header -->
+        <div class="card-header">
+            <div class="header-left">
+                <span class="header-icon">&#9783;</span>
+                <div>
+                    <h1 class="header-title">Account Records</h1>
+                    <p class="header-subtitle">
+                        Showing {startRecord}–{endRecord} of {totalRecords} accounts
+                    </p>
+                </div>
+            </div>
+            <div class="badge">
+                Page {currentPage} / {totalPages}
+            </div>
+        </div>
+
+        <!-- Loading State -->
+        <template if:true={isLoading}>
+            <div class="state-container">
+                <div class="spinner"></div>
+                <p class="state-text">Fetching accounts...</p>
+            </div>
+        </template>
+
+        <!-- Error State -->
+        <template if:true={hasError}>
+            <div class="state-container error-state">
+                <span class="state-icon">⚠</span>
+                <p class="state-text">{errorMessage}</p>
+            </div>
+        </template>
+
+        <!-- Empty State -->
+        <template if:true={isEmpty}>
+            <div class="state-container">
+                <span class="state-icon">📭</span>
+                <p class="state-text">No Account records found.</p>
+            </div>
+        </template>
+
+        <!-- Data Table -->
+        <template if:true={hasRecords}>
+            <div class="table-container">
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Account Name</th>
+                            <th>Industry</th>
+                            <th>Phone</th>
+                            <th>Billing City</th>
+                            <th>Annual Revenue</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <template for:each={currentPageRecords} for:item="acc" for:index="idx">
+                            <tr key={acc.Id} class="table-row">
+                                <td class="row-num">{acc.rowNumber}</td>
+                                <td class="account-name">{acc.Name}</td>
+                                <td>
+                                    <template if:true={acc.Industry}>
+                                        <span class="industry-badge">{acc.Industry}</span>
+                                    </template>
+                                    <template if:false={acc.Industry}>
+                                        <span class="empty-val">—</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template if:true={acc.Phone}>
+                                        {acc.Phone}
+                                    </template>
+                                    <template if:false={acc.Phone}>
+                                        <span class="empty-val">—</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template if:true={acc.BillingCity}>
+                                        {acc.BillingCity}
+                                    </template>
+                                    <template if:false={acc.BillingCity}>
+                                        <span class="empty-val">—</span>
+                                    </template>
+                                </td>
+                                <td>
+                                    <template if:true={acc.AnnualRevenue}>
+                                        {acc.formattedRevenue}
+                                    </template>
+                                    <template if:false={acc.AnnualRevenue}>
+                                        <span class="empty-val">—</span>
+                                    </template>
+                                </td>
+                            </tr>
+                        </template>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination Controls -->
+            <div class="pagination-bar">
+
+                <!-- Nav Buttons - Left -->
+                <div class="nav-buttons">
+                    <button
+                        class="nav-btn"
+                        disabled={isFirstPage}
+                        onclick={goToFirstPage}
+                        title="First Page">
+                        &#171; First
+                    </button>
+                    <button
+                        class="nav-btn"
+                        disabled={isFirstPage}
+                        onclick={goToPreviousPage}
+                        title="Previous Page">
+                        &#8249; Prev
+                    </button>
+                </div>
+
+                <!-- Page Number Pills -->
+                <div class="page-numbers">
+                    <template for:each={pageNumbers} for:item="page">
+                        <button
+                            key={page.number}
+                            class={page.cssClass}
+                            onclick={goToPageNumber}
+                            data-page={page.number}
+                            disabled={page.isActive}>
+                            {page.number}
+                        </button>
+                    </template>
+                </div>
+
+                <!-- Nav Buttons - Right -->
+                <div class="nav-buttons">
+                    <button
+                        class="nav-btn"
+                        disabled={isLastPage}
+                        onclick={goToNextPage}
+                        title="Next Page">
+                        Next &#8250;
+                    </button>
+                    <button
+                        class="nav-btn"
+                        disabled={isLastPage}
+                        onclick={goToLastPage}
+                        title="Last Page">
+                        Last &#187;
+                    </button>
+                </div>
+
+            </div>
+            <!-- End Pagination Controls -->
+
+        </template>
+        <!-- End Data Table -->
+
+    </div>
+</template>
